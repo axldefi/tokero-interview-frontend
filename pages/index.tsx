@@ -2,10 +2,15 @@ import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
-import { GetOperationTypeResults } from "../../types";
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import { OperationType } from "../types";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { type } from 'os';
 
-const Home: NextPage = ({ operationType }: any) => {
+const Home: NextPage<{ operationType: OperationType[] }>= ({ operationType }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,15 +20,27 @@ const Home: NextPage = ({ operationType }: any) => {
       </Head>
 
       <main className={styles.main}>
-        {operationType.map((type: any) => <div>{type.name}</div>)}
+        <Box sx={{ width: 500 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Select Any</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={operationType}
+              label="Select Any..."
+            >{operationType.map((type: any) => <MenuItem key={type.id} value={type.id}>{type.name}</MenuItem>)}
+            </Select>
+          </FormControl>
+        </Box>
+        
       </main>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  let results: any[] = [];
-  const res = await axios.get(`http://localhost:43792/operations/operation-types`)
+  let results: OperationType[] = [];
+  await axios.get(`http://localhost:43792/operations/operation-types`)
     .then((response) =>
     {
       results = response.data
@@ -33,8 +50,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       operationType: results
     }
   }
-
-  // http://localhost:43792/operations/operation-types
 }
 
 export default Home
