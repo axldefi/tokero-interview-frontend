@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import DepositTable from '../components/DepositTable';
+import TradeTable from '../components/TradeTable'
+
 
 
 const Home: NextPage<{ operationType: OperationType[] }> = ({ operationType }) => {
@@ -38,6 +40,7 @@ const Home: NextPage<{ operationType: OperationType[] }> = ({ operationType }) =
             </Select>
           </FormControl>
         </Box>
+        <TradeTable test="TESTING"/>
         <DepositTable />
       </main>
     </div>
