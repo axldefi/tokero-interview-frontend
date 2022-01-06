@@ -10,7 +10,11 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { type } from 'os';
 
-const Home: NextPage<{ operationType: OperationType[] }>= ({ operationType }) => {
+const Home: NextPage<{ operationType: OperationType[] }> = ({ operationType }) => {
+  const handleChange = (event: SelectChangeEvent) => {
+    console.log(event.target.value)
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,8 +30,9 @@ const Home: NextPage<{ operationType: OperationType[] }>= ({ operationType }) =>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={operationType}
+              value={operationType[0].id}
               label="Select Any..."
+              onChange={handleChange}
             >{operationType.map((type: any) => <MenuItem key={type.id} value={type.id}>{type.name}</MenuItem>)}
             </Select>
           </FormControl>
