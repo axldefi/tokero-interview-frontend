@@ -8,7 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { type } from 'os';
+import DepositTable from '../components/DepositTable';
+
 
 const Home: NextPage<{ operationType: OperationType[] }> = ({ operationType }) => {
   const handleChange = (event: SelectChangeEvent) => {
@@ -37,7 +38,7 @@ const Home: NextPage<{ operationType: OperationType[] }> = ({ operationType }) =
             </Select>
           </FormControl>
         </Box>
-        
+        <DepositTable />
       </main>
     </div>
   )
