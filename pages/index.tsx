@@ -19,6 +19,7 @@ const Home: NextPage<{ operationType: OperationType[] }> = ({
     setSelected(event.target.value)
     console.log(event.target.value)
   }
+  
 
   return (
     <div className={styles.container}>

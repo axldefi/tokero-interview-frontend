@@ -27,17 +27,31 @@ const Table: NextPage<Props> = (props) => {
 
     getTableData()
   }, [type])
-
-  const columns: GridColDef[] = [
-    { field: 'amount', headerName: 'Amount' },
-    { field: 'fromAddress', headerName: 'From Address', width: 500 },
-  ]
-
-  const rows = [
-    { id: 2, amount: 1, tradeOrderType: 'Snow' },
-    { id: 3, amount: 1, tradeOrderType: 'Snow' },
-    { id: 4, amount: 1, tradeOrderType: 'Snow' },
-  ]
+  let columns: GridColDef[] = []
+  console.log(type)
+  if (type === 1) {
+    columns = [
+      { field: 'amount', headerName: 'Amount', width: 200 },
+      { field: 'fromAddress', headerName: 'From Address', width: 500 },
+    ]
+  }
+    if (type === 3) {
+       columns = [
+         { field: 'amount', headerName: 'Amount' },
+         {
+           field: 'tradeOrderType',
+           headerName: 'Trade Order Type',
+           width: 500,
+         },
+       ]
+  }
+    if (type === 2) {
+      columns = [
+        { field: 'amount', headerName: 'Amount' },
+        { field: 'toAddress', headerName: 'To Address', width: 400  },
+        { field: 'twoFactorEnabled', headerName: '2FA confirmed', width: 150 },
+      ]
+    }
 
   useEffect(() => {
     if (tableData && tableData.length > 0) {
@@ -48,6 +62,9 @@ const Table: NextPage<Props> = (props) => {
         row.id = i
         row.amount = tableData[i].amount
         row.fromAddress = tableData[i].fromAddress
+        row.tradeOrderType = tableData[i].tradeOrderType
+        row.toAddress = tableData[i].toAddress
+        row.twoFactorEnabled = tableData[i].twoFactorEnabled
         rows.push(row)
       }
       console.log(rows)
