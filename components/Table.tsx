@@ -29,11 +29,14 @@ const Table: NextPage<Props> = (props) => {
     }
 
     getTableData()
+  }, [type])
+
+  useEffect(() => {
     console.log(tableData)
     if (tableData && tableData.length > 0) {
       setTableColumns(Object.keys(tableData[0]))
     }
-  }, [type])
+  }, [tableData])
 
   return (
     <div>
