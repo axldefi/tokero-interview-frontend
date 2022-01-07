@@ -13,8 +13,8 @@ const Table: NextPage<Props> = (props) => {
   const [tableData, setTableData] = useState([])
   const [tableColumns, setTableColumns] = useState([])
   const [tableRows, setTableRows] = useState([])
-  const [pageProp, setPageProp] = useState([])
   const { type } = props
+  const [pageSize, setPageSize] = useState<number>(2)
 
   useEffect(() => {
     const getTableData = async () => {
@@ -28,7 +28,6 @@ const Table: NextPage<Props> = (props) => {
     getTableData()
   }, [type])
   let columns: GridColDef[] = []
-  console.log(type)
   if (type === 1) {
     columns = [
       { field: 'amount', headerName: 'Amount', width: 200 },
@@ -79,8 +78,10 @@ const Table: NextPage<Props> = (props) => {
         <DataGrid
           rows={tableRows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[2, 4, 6]}
+          pagination
         />
       </div>
       {/* {tableColumns.map((column: any) => (
