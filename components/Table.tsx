@@ -13,6 +13,7 @@ const Table: NextPage<Props> = (props) => {
   const [tableData, setTableData] = useState([])
   const [tableColumns, setTableColumns] = useState([])
   const [tableRows, setTableRows] = useState([])
+  const [pageProp, setPageProp] = useState([])
   const { type } = props
 
   useEffect(() => {
@@ -65,9 +66,9 @@ const Table: NextPage<Props> = (props) => {
           rowsPerPageOptions={[5]}
         />
       </div>
-      {tableColumns.map((column: any) => (
+      {/* {tableColumns.map((column: any) => (
         <h1 key={column.name}>{column}</h1>
-      ))}
+      ))} */}
     </div>
   )
 }
