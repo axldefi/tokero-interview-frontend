@@ -16,19 +16,23 @@ interface Props {
 }
 
 const Table: NextPage<Props> = (props) => {
-  const [data, setData] = useState([])
+  const [tableData, setTableData] = useState([])
+  const [tableColumns, setTableColumns] = useState([])
   const { type } = props
 
   useEffect(() => {
-    const getData = async () => {
+    const getTableData = async () => {
       await axios
         .get(`http://localhost:43792/operations/table-data?type=${type}`)
         .then((response) => {
-          setData(response.data)
-          console.log(data)
+          setTableData(response.data)
         })
     }
-    getData()
+      getTableData()
+      console.log(tableData)
+      if (tableData && tableData.length > 0) {
+          setTableColumns(Object.keys(tableData[0]))
+      }
   }, [type])
 
   return <h1>{type}</h1>
