@@ -9,7 +9,6 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Table from '../components/Table'
-import DepositTable from '../components/DepositTable'
 import { useState } from 'react'
 
 const Home: NextPage<{ operationType: OperationType[] }> = ({
@@ -49,7 +48,6 @@ const Home: NextPage<{ operationType: OperationType[] }> = ({
           </FormControl>
         </Box>
         <Table type={selected} />
-        <DepositTable />
       </main>
     </div>
   )
