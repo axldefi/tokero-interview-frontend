@@ -1,4 +1,7 @@
 import * as React from 'react'
+import type { NextPage } from 'next'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -6,10 +9,6 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import type { GetStaticProps, NextPage } from 'next'
-import { OperationType } from '../types'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
 
 interface Props {
   type: string
@@ -28,14 +27,21 @@ const Table: NextPage<Props> = (props) => {
           setTableData(response.data)
         })
     }
-      getTableData()
-      console.log(tableData)
-      if (tableData && tableData.length > 0) {
-          setTableColumns(Object.keys(tableData[0]))
-      }
+
+    getTableData()
+    console.log(tableData)
+    if (tableData && tableData.length > 0) {
+      setTableColumns(Object.keys(tableData[0]))
+    }
   }, [type])
 
-  return <h1>{type}</h1>
+  return (
+    <div>
+      {tableColumns.map((column: any) => (
+        <h1 key={column.name}>{column}</h1>
+      ))}
+    </div>
+  )
 }
 
 export default Table
