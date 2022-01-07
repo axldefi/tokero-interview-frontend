@@ -17,6 +17,7 @@ interface Props {
 const Table: NextPage<Props> = (props) => {
   const [tableData, setTableData] = useState([])
   const [tableColumns, setTableColumns] = useState([])
+  const [tableRows, setTableRows] = useState([])
   const { type } = props
 
   useEffect(() => {
